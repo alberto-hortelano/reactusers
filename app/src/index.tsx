@@ -8,7 +8,6 @@ import reducer from './state/reducers';
 import { Provider } from 'react-redux';
 
 const store = configureStore({ reducer });
-console.log('log: store', JSON.parse(JSON.stringify(store.getState())));
 
 ReactDOM.render(
 	<React.StrictMode>
