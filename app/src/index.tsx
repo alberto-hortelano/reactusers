@@ -6,16 +6,14 @@ import * as serviceWorker from './serviceWorker';
 import { configureStore } from '@reduxjs/toolkit';
 import reducer from './state/reducers';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
 
 const store = configureStore({ reducer });
+console.log('log: store', JSON.parse(JSON.stringify(store.getState())));
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<BrowserRouter>
-				<Route path="/" render={() => <App />} />
-			</BrowserRouter>
+			<App />
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root'),
