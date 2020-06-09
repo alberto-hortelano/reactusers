@@ -27,7 +27,7 @@ const slice = createSlice<State['user'], SliceCaseReducers<State['user']>>({
 	initialState: {
 		userName: '',
 		password: '',
-		token: '',
+		token: '1',
 		error: '',
 	},
 	reducers: {
