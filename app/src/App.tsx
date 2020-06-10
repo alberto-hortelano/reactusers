@@ -6,7 +6,7 @@ import { Link, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { State } from './state';
 import { Users } from './componenets/Users';
-import { User } from './componenets/User';
+import { User } from './componenets/Users/User';
 
 function App() {
 	const token = useSelector<State, State['login']['token']>(({ login }) => login.token);
