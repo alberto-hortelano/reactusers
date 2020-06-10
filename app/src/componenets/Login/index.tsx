@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Content } from './Content';
-import { authenticate, updateLogin } from './slice';
+import { authenticate, setLogin } from '../../state/login';
 import { State } from '../../state';
 
 export function Login() {
@@ -12,16 +12,9 @@ export function Login() {
 		dispatch(authenticate(login));
 	};
 	const handleChange = ({ currentTarget }: { currentTarget: { name: string; value: string } }) => {
-		switch (currentTarget.name) {
-			case 'username':
-				dispatch(updateLogin({ userName: currentTarget.value }));
-				break;
-			case 'password':
-				dispatch(updateLogin({ password: currentTarget.value }));
-				break;
-
-			default:
-				break;
+		console.log('log: handleChange -> currentTarget', currentTarget);
+		if (['userName', 'password'].includes(currentTarget.name)) {
+			dispatch(setLogin({ [currentTarget.name]: currentTarget.value }));
 		}
 	};
 	return <Content login={login} handleSubmit={handleSubmit} handleChange={handleChange} />;

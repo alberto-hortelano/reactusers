@@ -16,7 +16,7 @@ export function Content({
 		<form name="form" onSubmit={handleSubmit}>
 			<label>
 				<span>Username</span>
-				<input name="username" type="text" value={userName} onChange={handleChange} />
+				<input name="userName" type="text" value={userName} onChange={handleChange} />
 			</label>
 			<label>
 				<span>Password</span>

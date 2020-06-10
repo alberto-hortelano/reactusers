@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Content } from './Content';
-import { loadUsers } from './slice';
+import { loadUsers } from '../../state/users';
 import { State } from '../../state';
 
 export function Users() {

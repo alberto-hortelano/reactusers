@@ -15,4 +15,5 @@ export interface State {
 	users: {
 		[key: string]: User;
 	};
+	error?: string;
 }

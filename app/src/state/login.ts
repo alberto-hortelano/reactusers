@@ -1,5 +1,5 @@
 import { createSlice, SliceCaseReducers, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { State } from '../../state';
+import { State } from '.';
 
 export const authenticate = createAsyncThunk<void, State['login']>(
 	'login/authenticate',
@@ -27,11 +27,11 @@ const slice = createSlice<State['login'], SliceCaseReducers<State['login']>>({
 	initialState: {
 		userName: '',
 		password: '',
-		token: '1',
+		token: '',
 		error: '',
 	},
 	reducers: {
-		updateLogin: (
+		setLogin: (
 			login: State['login'],
 			{
 				payload,
@@ -55,6 +55,6 @@ const slice = createSlice<State['login'], SliceCaseReducers<State['login']>>({
 	},
 });
 
-export const { updateLogin, setToken } = slice.actions;
+export const { setLogin, setToken } = slice.actions;
 
 export default slice.reducer;
