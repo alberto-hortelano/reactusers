@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import user from '../componenets/Login/slice';
-import users from '../componenets/Users/slice';
+import login from './login';
+import users from './users';
 import { State } from '.';
 
-export default combineReducers<State>({ user, users });
+export default combineReducers<State>({ login, users });

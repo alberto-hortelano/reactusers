@@ -4,11 +4,11 @@ import { State } from '../../state';
 interface Props {
 	handleSubmit: React.DOMAttributes<HTMLFormElement>['onSubmit'];
 	handleChange: React.DOMAttributes<HTMLInputElement>['onChange'];
-	user: State['user'];
+	login: State['login'];
 }
 
 export function Content({
-	user: { userName, password, error },
+	login: { userName, password, error },
 	handleSubmit,
 	handleChange,
 }: Props) {
@@ -16,14 +16,14 @@ export function Content({
 		<form name="form" onSubmit={handleSubmit}>
 			<label>
 				<span>Username</span>
-				<input name="username" type="text" value={userName} onChange={handleChange} />
+				<input name="userName" type="text" value={userName} onChange={handleChange} />
 			</label>
 			<label>
 				<span>Password</span>
 				<input name="password" type="password" value={password} onChange={handleChange} />
 			</label>
 			<button type="submit">Submit</button>
-			<p>User: eve.holt@reqres.in</p>
+			<p>Username: eve.holt@reqres.in</p>
 			{error && <p>{error}</p>}
 		</form>
 	);

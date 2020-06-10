@@ -1,30 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Login } from './componenets/Login/';
-import { Link, BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import './App.css';
 import { State } from './state';
+import { Login } from './componenets/Login/';
+import { Logout } from './componenets/Logout';
 import { Users } from './componenets/Users';
+import { User } from './componenets/User';
 
 function App() {
-	const token = useSelector<State, State['user']['token']>(({ user }) => user.token);
+	const token = useSelector<State, State['login']['token']>(({ login }) => login.token);
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
+			<header className="App-header">{token && <Logout />}</header>
+			<div className="App-content">
 				<BrowserRouter>
-					<Link to="/users">users</Link>
 					<Route path="/users" render={() => (token ? <Users /> : <Redirect to="/" />)} />
 					<Route
 						path="/user/:id"
 						render={({ match }) =>
-							token ? <div>User: {match.params.id}</div> : <Redirect to="/" />
+							token ? <User userId={match.params.id} /> : <Redirect to="/" />
 						}
 					/>
-					<Route exact path="/" render={() => !token && <Login />} />
+					<Route exact path="/" render={() => (token ? <Redirect to="/users" /> : <Login />)} />
 				</BrowserRouter>
-			</header>
+			</div>
 		</div>
 	);
 }

@@ -1,7 +1,7 @@
 import { createSlice, SliceCaseReducers, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { State } from '../../state';
+import { State } from '.';
 
-export const authenticate = createAsyncThunk<void, State['user']>(
+export const authenticate = createAsyncThunk<void, State['login']>(
 	'login/authenticate',
 	async ({ userName, password }, thunkAPI) => {
 		const response = await fetch('https://reqres.in/api/login', {
@@ -22,39 +22,39 @@ export const authenticate = createAsyncThunk<void, State['user']>(
 	},
 );
 
-const slice = createSlice<State['user'], SliceCaseReducers<State['user']>>({
+const slice = createSlice<State['login'], SliceCaseReducers<State['login']>>({
 	name: 'login',
 	initialState: {
 		userName: '',
 		password: '',
-		token: '1',
+		token: '',
 		error: '',
 	},
 	reducers: {
-		updateUser: (
-			user: State['user'],
+		setLogin: (
+			login: State['login'],
 			{
 				payload,
 			}: PayloadAction<{
-				userName: State['user']['userName'];
-				password: State['user']['password'];
+				userName: State['login']['userName'];
+				password: State['login']['password'];
 			}>,
 		) => {
-			user.userName = payload.userName !== void 0 ? payload.userName : user.userName;
-			user.password = payload.password !== void 0 ? payload.password : user.password;
-			return user;
+			login.userName = payload.userName !== void 0 ? payload.userName : login.userName;
+			login.password = payload.password !== void 0 ? payload.password : login.password;
+			return login;
 		},
-		setToken: (user: State['user'], { payload }: PayloadAction<State['user']['token']>) => {
-			user.token = payload;
-			return user;
+		setToken: (login: State['login'], { payload }: PayloadAction<State['login']['token']>) => {
+			login.token = payload;
+			return login;
 		},
-		setError: (user: State['user'], { payload }: PayloadAction<State['user']['error']>) => {
-			user.error = payload;
-			return user;
+		setError: (login: State['login'], { payload }: PayloadAction<State['login']['error']>) => {
+			login.error = payload;
+			return login;
 		},
 	},
 });
 
-export const { updateUser, setToken } = slice.actions;
+export const { setLogin, setToken } = slice.actions;
 
 export default slice.reducer;
