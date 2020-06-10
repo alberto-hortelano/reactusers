@@ -5,6 +5,7 @@ import { Login } from './componenets/Login/';
 import { Link, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { State } from './state';
+import { Users } from './componenets/Users';
 
 function App() {
 	const token = useSelector<State, State['user']['token']>(({ user }) => user.token);
@@ -14,14 +15,14 @@ function App() {
 				<img src={logo} className="App-logo" alt="logo" />
 				<BrowserRouter>
 					<Link to="/users">users</Link>
-					<Route path="/users" render={() => (token ? <div>Users</div> : <Redirect to="/" />)} />
+					<Route path="/users" render={() => (token ? <Users /> : <Redirect to="/" />)} />
 					<Route
 						path="/user/:id"
 						render={({ match }) =>
 							token ? <div>User: {match.params.id}</div> : <Redirect to="/" />
 						}
 					/>
-					<Route exact path="/" render={() => <Login />} />
+					<Route exact path="/" render={() => !token && <Login />} />
 				</BrowserRouter>
 			</header>
 		</div>

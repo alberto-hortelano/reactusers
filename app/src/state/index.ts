@@ -1,3 +1,9 @@
+interface User {
+	first_name: string;
+	last_name: string;
+	id: string;
+}
+
 export interface State {
 	user: {
 		userName: string;
@@ -5,4 +11,5 @@ export interface State {
 		token: string;
 		error?: string;
 	};
+	users?: User[];
 }

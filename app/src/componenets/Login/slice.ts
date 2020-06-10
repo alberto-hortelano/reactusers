@@ -4,7 +4,6 @@ import { State } from '../../state';
 export const authenticate = createAsyncThunk<void, State['user']>(
 	'login/authenticate',
 	async ({ userName, password }, thunkAPI) => {
-		console.log('log: userName, password', userName, password);
 		const response = await fetch('https://reqres.in/api/login', {
 			method: 'POST',
 			headers: {
@@ -12,9 +11,7 @@ export const authenticate = createAsyncThunk<void, State['user']>(
 			},
 			body: JSON.stringify({ email: userName, password }),
 		});
-		console.log('log: response', response);
 		const content = await response.json();
-		console.log('log: content', content);
 		if (content.token) {
 			thunkAPI.dispatch(slice.actions.setToken(content.token));
 			thunkAPI.dispatch(slice.actions.setError(''));
@@ -30,7 +27,7 @@ const slice = createSlice<State['user'], SliceCaseReducers<State['user']>>({
 	initialState: {
 		userName: '',
 		password: '',
-		token: '',
+		token: '1',
 		error: '',
 	},
 	reducers: {
@@ -48,13 +45,11 @@ const slice = createSlice<State['user'], SliceCaseReducers<State['user']>>({
 			return user;
 		},
 		setToken: (user: State['user'], { payload }: PayloadAction<State['user']['token']>) => {
-			console.log('log: payload.token', payload);
 			user.token = payload;
 			return user;
 		},
 		setError: (user: State['user'], { payload }: PayloadAction<State['user']['error']>) => {
 			user.error = payload;
-			console.log('log: payload.error', payload);
 			return user;
 		},
 	},
