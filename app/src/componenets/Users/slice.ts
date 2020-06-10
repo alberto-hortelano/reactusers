@@ -11,7 +11,7 @@ export const loadUsers = createAsyncThunk<void, void>('users/loadUsers', async (
 
 const slice = createSlice<State['users'], SliceCaseReducers<State['users']>>({
 	name: 'users',
-	initialState: [],
+	initialState: {},
 	reducers: {
 		setUsers: (users: State['users'], { payload }: PayloadAction<State['users']>) => {
 			users = payload;

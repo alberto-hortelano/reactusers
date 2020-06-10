@@ -1,21 +1,17 @@
 import React from 'react';
-import { State } from '../../state';
-import { Link } from 'react-router-dom';
+import { User } from '../../state';
 
 interface Props {
-	users: State['users'];
+	handleSubmit: React.DOMAttributes<HTMLFormElement>['onSubmit'];
+	handleChange: React.DOMAttributes<HTMLInputElement>['onChange'];
+	user: User;
 }
-
-export function Content({ users }: Props) {
+export function Content({ user, handleChange }: Props) {
 	return (
 		<ul>
-			{users?.map((user, key) => (
-				<li key={key}>
-					<Link to={`/user/${user.id}`}>
-						{user.first_name} - {user.last_name}{' '}
-					</Link>
-				</li>
-			))}
+			<form action="">
+				<input type="text" value={user.email} onChange={handleChange} />
+			</form>
 		</ul>
 	);
 }

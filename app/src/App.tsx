@@ -6,9 +6,10 @@ import { Link, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { State } from './state';
 import { Users } from './componenets/Users';
+import { User } from './componenets/User';
 
 function App() {
-	const token = useSelector<State, State['user']['token']>(({ user }) => user.token);
+	const token = useSelector<State, State['login']['token']>(({ login }) => login.token);
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -19,7 +20,7 @@ function App() {
 					<Route
 						path="/user/:id"
 						render={({ match }) =>
-							token ? <div>User: {match.params.id}</div> : <Redirect to="/" />
+							token ? <User userId={match.params.id} /> : <Redirect to="/" />
 						}
 					/>
 					<Route exact path="/" render={() => !token && <Login />} />

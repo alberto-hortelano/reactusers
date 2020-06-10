@@ -9,13 +9,14 @@ interface Props {
 export function Content({ users }: Props) {
 	return (
 		<ul>
-			{users?.map((user, key) => (
-				<li key={key}>
-					<Link to={`/user/${user.id}`}>
-						{user.first_name} - {user.last_name}
-					</Link>
-				</li>
-			))}
+			{users &&
+				Object.keys(users).map((userId, key) => (
+					<li key={key}>
+						<Link to={`/user/${userId}`}>
+							{users[userId].first_name} - {users[userId].last_name}
+						</Link>
+					</li>
+				))}
 		</ul>
 	);
 }

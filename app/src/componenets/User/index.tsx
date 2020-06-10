@@ -1,14 +1,32 @@
 import React, { useEffect } from 'react';
 import { Content } from './Content';
-import { loadUsers } from './slice';
+import { loadUser } from './slice';
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../../state';
+import { State, User as UserType } from '../../state';
 
-export function Users() {
+export function User({ userId }: { userId: string }) {
 	const dispatch = useDispatch();
-	const users = useSelector<State, State['users']>(({ users }) => users);
+	const user = useSelector<State, UserType>(({ users }) => users[userId]);
+	console.log('log: User -> user', user);
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		// dispatch(authenticate(user));
+	};
+	const handleChange = ({ currentTarget }: { currentTarget: { name: string; value: string } }) => {
+		switch (currentTarget.name) {
+			case 'username':
+				// dispatch(updateUser({ userName: currentTarget.value }));
+				break;
+			case 'password':
+				// dispatch(updateUser({ password: currentTarget.value }));
+				break;
+
+			default:
+				break;
+		}
+	};
 	useEffect(() => {
-		dispatch(loadUsers());
+		dispatch(loadUser(userId));
 	}, []);
-	return <Content users={users} />;
+	return <Content user={user} handleSubmit={handleSubmit} handleChange={handleChange} />;
 }

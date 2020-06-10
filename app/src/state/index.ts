@@ -1,15 +1,18 @@
-interface User {
+export interface User {
 	first_name: string;
 	last_name: string;
-	id: string;
+	email: string;
+	avatar: string;
 }
 
 export interface State {
-	user: {
+	login: {
 		userName: string;
 		password: string;
 		token: string;
 		error?: string;
 	};
-	users?: User[];
+	users: {
+		[key: string]: User;
+	};
 }
