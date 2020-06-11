@@ -1,0 +1,29 @@
+.users {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+.users li {
+	display: block;
+	text-align: left;
+	padding: 5px 0;
+}
+.users a {
+	color: #e35ce4;
+	transition: color 200ms;
+}
+.users a:hover {
+	color: #ea76ea;
+}
+.users .avatar {
+	width: calc(40px + 2vmin);
+	vertical-align: middle;
+	border-radius: 100%;
+	margin-right: 10px;
+	transition: box-shadow 200ms;
+}
+.users a:hover .avatar {
+	box-shadow: 0px 0px 0px 4px #e35ce4;
+}

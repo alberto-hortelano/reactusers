@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './App.css';
 import { State } from './state';
-import { Login } from './componenets/Login/';
+import { Login } from './componenets/Login';
 import { Logout } from './componenets/Logout';
 import { Users } from './componenets/Users';
 import { User } from './componenets/User';
@@ -12,7 +12,10 @@ function App() {
 	const token = useSelector<State, State['login']['token']>(({ login }) => login.token);
 	return (
 		<div className="App">
-			<header className="App-header">{token && <Logout />}</header>
+			<header className="App-header">
+				<h1 className="title">Users App</h1>
+				{token && <Logout />}
+			</header>
 			<div className="App-content">
 				<BrowserRouter>
 					<Route path="/users" render={() => (token ? <Users /> : <Redirect to="/" />)} />

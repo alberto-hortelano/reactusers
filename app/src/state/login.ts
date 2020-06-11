@@ -3,7 +3,7 @@ import { State } from '.';
 
 export const authenticate = createAsyncThunk<void, State['login']>(
 	'login/authenticate',
-	async ({ userName, password }, thunkAPI) => {
+	async ({ userName, password }, { dispatch }) => {
 		const response = await fetch('https://reqres.in/api/login', {
 			method: 'POST',
 			headers: {
@@ -13,11 +13,11 @@ export const authenticate = createAsyncThunk<void, State['login']>(
 		});
 		const content = await response.json();
 		if (content.token) {
-			thunkAPI.dispatch(slice.actions.setToken(content.token));
-			thunkAPI.dispatch(slice.actions.setError(''));
+			dispatch(slice.actions.setToken(content.token));
+			dispatch(slice.actions.setError(''));
 		}
 		if (content.error) {
-			thunkAPI.dispatch(slice.actions.setError(content.error));
+			dispatch(slice.actions.setError(content.error));
 		}
 	},
 );

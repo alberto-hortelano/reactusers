@@ -9,6 +9,6 @@ export function Users() {
 	const users = useSelector<State, State['users']>(({ users }) => users);
 	useEffect(() => {
 		dispatch(loadUsers());
-	}, []);
+	}, [dispatch]);
 	return <Content users={users} />;
 }

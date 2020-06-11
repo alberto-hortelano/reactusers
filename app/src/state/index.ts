@@ -10,10 +10,28 @@ export interface State {
 		userName: string;
 		password: string;
 		token: string;
-		error?: string;
+		error: string;
 	};
 	users: {
-		[key: string]: User;
+		userList: {
+			[key: string]: User;
+		};
+		error: string;
 	};
-	error?: string;
 }
+
+export const isUsersData = (data: any): data is (User & { id: string })[] => {
+	return (
+		Array.isArray(data) &&
+		data.reduce<boolean>((result, user) => {
+			return (
+				result &&
+				typeof user.id === 'number' &&
+				typeof user.first_name === 'string' &&
+				typeof user.last_name === 'string' &&
+				typeof user.email === 'string' &&
+				typeof user.avatar === 'string'
+			);
+		}, true)
+	);
+};

@@ -12,7 +12,19 @@
 		animation: App-logo-spin infinite 20s linear;
 	}
 }
-
+.App-header {
+	background-color: #111;
+	display: grid;
+	grid-template-columns: 20% 60% 20%;
+}
+.App-header .title {
+	grid-column: 2;
+	color: white;
+}
+.App-header button {
+	padding: 30px;
+	justify-self: right;
+}
 .App-content {
 	background-color: #282c34;
 	min-height: 100vh;

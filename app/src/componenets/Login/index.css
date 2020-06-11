@@ -1,0 +1,35 @@
+.login {
+	width: 100%;
+	display: inline-block;
+}
+.login label {
+	width: 50%;
+	display: inline-block;
+}
+.login label span {
+	margin: 0 10px;
+	box-sizing: border-box;
+}
+.login button {
+	width: 50%;
+	margin: 40px auto;
+	box-sizing: border-box;
+}
+
+@media only screen and (max-width: 900px) {
+	.login label {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.login label span {
+		width: 100%;
+		display: inline-block;
+	}
+	.login label input {
+		width: 80%;
+	}
+	.login button {
+		width: 80%;
+		margin: 40px auto;
+	}
+}
