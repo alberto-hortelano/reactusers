@@ -1,5 +1,42 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Features
+
+### Typescript
+
+I find it very usefull at many levels
+
+### Extra libraries:
+
+- Redux-toolkit: Because it's "The recommended way to start new apps with React and Redux" as in [Redux's Documentation](https://redux.js.org/introduction/getting-started#redux-toolkit)
+
+- Thunk instead of redux-saga because it's integrated in Redux-toolkit
+
+### Error handling
+
+Example in state/users: loadUsers, updateUser
+
+### Unit tests
+
+Examples in:
+
+- components/App.test.tsx
+- components/Users/Users.test.tsx
+
+### Code structure
+
+Components:
+
+- Folder with component name
+- index.tsx: The container
+- Content.tsx: The stateless component
+- index.css: Styles if needed
+
+State:
+
+- index: state interfaces
+- login & users: the redux-toolit "slices"
+
 ## Available Scripts
 
 In the project directory, you can run:

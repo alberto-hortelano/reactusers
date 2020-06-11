@@ -12,7 +12,6 @@ export function Login() {
 		dispatch(authenticate(login));
 	};
 	const handleChange = ({ currentTarget }: { currentTarget: { name: string; value: string } }) => {
-		console.log('log: handleChange -> currentTarget', currentTarget);
 		if (['userName', 'password'].includes(currentTarget.name)) {
 			dispatch(setLogin({ [currentTarget.name]: currentTarget.value }));
 		}
